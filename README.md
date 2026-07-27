@@ -5,6 +5,20 @@ A full-stack JWT Authentication System built using **React**, **FastAPI**, **SQL
 This project demonstrates secure user authentication with user registration, login, protected routes, JWT token verification, and a modern responsive user interface.
 
 ---
+## 📸 Project Preview
+
+> Add screenshots here after taking them.
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Register Page
+![Register](screenshots/register.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+---
 
 ## 📌 Features
 
