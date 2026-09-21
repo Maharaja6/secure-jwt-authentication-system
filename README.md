@@ -1,6 +1,6 @@
 # 🔐 Secure JWT Authentication System
 
-A modern Full Stack Authentication System built using **React.js**, **FastAPI**, **JWT**, and **SQLite**. This project demonstrates secure user authentication with JSON Web Tokens, protected routes, user registration, login, and a responsive dashboard.
+A modern Full Stack Authentication System built using **React.js**, **FastAPI**, **JWT**, and **MySQL**. This project demonstrates secure user authentication with JSON Web Tokens, protected routes, user registration, login, and a responsive dashboard.
 
 ---
 
@@ -40,7 +40,7 @@ https://secure-jwt-authentication-system-backend.onrender.com
 - 🚪 Logout Functionality
 - 📱 Responsive UI
 - ⚡ FastAPI REST API
-- 💾 SQLite Database
+- 💾 MySQL Database
 - 🔄 Axios API Integration
 - 🎨 Modern User Interface
 
@@ -65,7 +65,7 @@ https://secure-jwt-authentication-system-backend.onrender.com
 
 ### Database
 
-- SQLite
+- MySQL
 
 ### Version Control
 
@@ -85,7 +85,7 @@ jwt-auth-project
 │   ├── database.py
 │   ├── models.py
 │   ├── requirements.txt
-│   └── users.db
+│   └── .gitignore
 │
 ├── frontend
 │   ├── src
@@ -163,7 +163,7 @@ Register
 Password Hashing
       │
       ▼
-Store User in SQLite
+Store User in MySQL
       │
       ▼
 Login
@@ -190,7 +190,7 @@ This project helped in understanding:
 - Password Hashing
 - Protected Routes
 - Axios API Communication
-- SQLite Database Integration
+- MySQL Database Integration
 - Authentication Workflow
 - Git & GitHub Version Control
 

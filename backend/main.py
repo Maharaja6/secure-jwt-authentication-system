@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
-import sqlite3
+ 
 import database
 
 from models import User
@@ -33,18 +33,18 @@ def home():
 @app.post("/register")
 def register(user: User):
 
-    conn = sqlite3.connect("users.db")
+    conn = database.get_connection()
     cursor = conn.cursor()
 
-    # Check if username already exists
     cursor.execute(
-        "SELECT * FROM users WHERE username = ?",
+        "SELECT * FROM users WHERE username = %s",
         (user.username,)
     )
 
     existing_user = cursor.fetchone()
 
     if existing_user:
+        cursor.close()
         conn.close()
 
         raise HTTPException(
@@ -55,11 +55,13 @@ def register(user: User):
     hashed_password = hash_password(user.password)
 
     cursor.execute(
-        "INSERT INTO users(username, password) VALUES (?, ?)",
+        "INSERT INTO users(username, password) VALUES (%s, %s)",
         (user.username, hashed_password)
     )
 
     conn.commit()
+
+    cursor.close()
     conn.close()
 
     return {
@@ -70,18 +72,17 @@ def register(user: User):
 @app.post("/login")
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
-    conn = sqlite3.connect("users.db")
+    conn = database.get_connection()
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT username, password FROM users WHERE username = ?",
+        "SELECT username, password FROM users WHERE username = %s",
         (form_data.username,)
     )
 
     db_user = cursor.fetchone()
 
-    print(db_user)
-
+    cursor.close()
     conn.close()
 
     if db_user is None:
