@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,7 +13,13 @@ from auth import (
     verify_token
 )
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    database.create_tables()
+    print("Database tables initialized successfully.")
+    yield
+
+app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
